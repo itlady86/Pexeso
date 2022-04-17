@@ -8,17 +8,17 @@ namespace Pexeso
 {
     public class Karta
     {
-        public Bitmap PredniStrana { get; set; }
-        public Bitmap ZadniStrana { get; set; }
-        public int X { get; set; }
-        public int Y { get; set; }
+        public Image PredniStrana { get; set; }
+        public Image ZadniStrana = Image.FromFile(Logic.bgPaths[0]);
 
-        public Karta(Bitmap predniStrana, Bitmap zadniStrana, int x, int y)
+        public Karta()
         {
-            this.PredniStrana = predniStrana;
-            this.ZadniStrana = zadniStrana;
-            this.X = x;
-            this.Y = y;
         }
+
+        //public Karta(Bitmap predniStrana, Bitmap zadniStrana)
+        //{
+        //    this.PredniStrana = predniStrana;
+        //    this.ZadniStrana = zadniStrana;
+        //}
     }
 }

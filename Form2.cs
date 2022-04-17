@@ -16,23 +16,18 @@ namespace Pexeso
         public string vybranePozadi;
         public string vybranyMotiv;
 
-        private static string rootDir = new DirectoryInfo(Environment.CurrentDirectory).Parent.Parent.Parent.FullName;
-        private static string motiv_01 = rootDir + "/images/motiv01";
-        private static string motiv_02 = rootDir + "/images/motiv02";
-        private static string motiv_03 = rootDir + "/images/motiv03";
-        private static string motiv_04 = rootDir + "/images/motiv04";
-        private static string board = rootDir + "/images/board";
-        private static string background = rootDir + "/images/bg";
-        private static String[] motiv01Paths = Directory.GetFiles(motiv_01);
-        private static String[] motiv02Paths = Directory.GetFiles(motiv_02);
-        private static String[] motiv03Paths = Directory.GetFiles(motiv_03);
-        private static String[] motiv04Paths = Directory.GetFiles(motiv_04);
-        private static String[] boardPaths = Directory.GetFiles(board);
-        private static String[] bgPaths = Directory.GetFiles(background);
-
-        private static Image[] boards = new Image[boardPaths.Length];
+        public Logic logic = new Logic();
         public static Bitmap pozadiImg;
         public Board b = new Board(pozadiImg);
+        public Karta k = new Karta();
+
+        
+
+        //public Image[] pole24;
+
+        public int shoda;
+        public int otoceno;
+        
 
         public Form2()
         {
@@ -43,41 +38,33 @@ namespace Pexeso
         {
             SestavBoard(vybranePozadi);
             b.PozadiImg = pozadiImg;
+            NovaHra();
+            //Aktualizuj();
+        }
+            
+        private void NovaHra()
+        {
+            RozdejKarty();
         }
 
-
+        #region Nastavení boardu
         private Bitmap SestavBoard(string pozadi)
         {
+            panel1.BackgroundImageLayout = ImageLayout.Stretch;
             switch (pozadi)
             {
                 case "wood":
-                    for (int i = 0; i < boardPaths.Length; i++)
-                    {
-                        boards[i] = Image.FromFile(boardPaths[i]);
-                        panel1.BackgroundImage = boards[0];
-                        panel1.BackgroundImageLayout = ImageLayout.Stretch;
-                    }
+                    NastavImageBoard(0);
                     label1.ForeColor = Color.Black;
                     label2.ForeColor = Color.Black;
                     break;
                 case "nature":
-                    for (int i = 0; i < boardPaths.Length; i++)
-                    {
-                        boards[i] = Image.FromFile(boardPaths[i]);
-                        panel1.BackgroundImage = boards[1];
-                        panel1.BackgroundImageLayout = ImageLayout.Stretch;
-                    }
+                    NastavImageBoard(1);                    
                     label1.ForeColor = Color.Black;
                     label2.ForeColor = Color.Black;
                     break;
                 case "candles":
-                    for (int i = 0; i < boardPaths.Length; i++)
-                    {
-                        boards[i] = Image.FromFile(boardPaths[i]);
-                        panel1.BackgroundImage = boards[2];
-                        panel1.BackgroundImageLayout = ImageLayout.Stretch;
-                    }
-                    
+                    NastavImageBoard(2);
                     label1.ForeColor = Color.White;
                     label2.ForeColor = Color.White;
                     break;
@@ -85,7 +72,61 @@ namespace Pexeso
             return pozadiImg;
         }
 
+        private void NastavImageBoard(int index)
+        {
+            for (int i = 0; i < Logic.boardPaths.Length; i++)
+            {
+                Logic.boards[i] = Image.FromFile(Logic.boardPaths[i]);
+                panel1.BackgroundImage = Logic.boards[index];
+            }
+        }
+        #endregion
+
+        #region Zadní strana
+
+        private void UkazZadniStranu()
+        {
+            foreach(PictureBox picture in tableLayoutPanel1.Controls)
+            {
+                picture.BackgroundImage = k.ZadniStrana;
+                picture.BackgroundImageLayout = ImageLayout.Stretch;
+            }
+        }
+        #endregion
 
 
+        private void RozdejKarty()
+        {
+            UkazZadniStranu();
+            shoda = 0;
+            otoceno = 0;
+            tableLayoutPanel1.Enabled = true;
+
+            //Aktualizuj();
+        }
+
+
+
+        // klik na jakoukoli kartu
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            PictureBox picture = (PictureBox)sender;
+            picture.Enabled = false;
+        }
+
+        //DEBUG
+        private void button1_Click(object sender, EventArgs e)
+        {
+            logic.VyberMotiv(vybranyMotiv);
+            foreach (PictureBox picture in tableLayoutPanel1.Controls)
+            {
+                picture.BackgroundImageLayout = ImageLayout.Stretch;
+                for (int i = 0; i < logic.pole24.Length; i++)
+                {
+                    picture.BackgroundImage = logic.pole24[i];
+                }
+            }
+
+        }
     }
 }

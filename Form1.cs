@@ -8,7 +8,7 @@ namespace Pexeso
         public Form1()
         {
             InitializeComponent();
-            Logic logic = new Logic(this);
+            //Logic logic = new Logic(this);
         }
 
         private void Form1_Load(object sender, EventArgs e)
