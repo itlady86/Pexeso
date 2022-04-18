@@ -10,15 +10,15 @@ namespace Pexeso
     {
         public Image PredniStrana { get; set; }
         public Image ZadniStrana = Image.FromFile(Logic.bgPaths[0]);
-
+        public int Id;
         public Karta()
         {
         }
 
-        //public Karta(Bitmap predniStrana, Bitmap zadniStrana)
-        //{
-        //    this.PredniStrana = predniStrana;
-        //    this.ZadniStrana = zadniStrana;
-        //}
+        public Karta(Image predniStrana, int Id)
+        {
+            this.PredniStrana = predniStrana;
+            this.Id = Id;
+        }
     }
 }

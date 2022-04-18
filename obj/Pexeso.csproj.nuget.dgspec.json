@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "e:\\--- VOSPLZEN\\AIK2\\ZP 4\\Pexeso\\version\\Pexeso\\Pexeso.csproj": {}
+    "E:\\--- VOSPLZEN\\AIK2\\ZP 4\\Pexeso\\version\\Pexeso\\Pexeso.csproj": {}
   },
   "projects": {
-    "e:\\--- VOSPLZEN\\AIK2\\ZP 4\\Pexeso\\version\\Pexeso\\Pexeso.csproj": {
+    "E:\\--- VOSPLZEN\\AIK2\\ZP 4\\Pexeso\\version\\Pexeso\\Pexeso.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "e:\\--- VOSPLZEN\\AIK2\\ZP 4\\Pexeso\\version\\Pexeso\\Pexeso.csproj",
+        "projectUniqueName": "E:\\--- VOSPLZEN\\AIK2\\ZP 4\\Pexeso\\version\\Pexeso\\Pexeso.csproj",
         "projectName": "Pexeso",
-        "projectPath": "e:\\--- VOSPLZEN\\AIK2\\ZP 4\\Pexeso\\version\\Pexeso\\Pexeso.csproj",
+        "projectPath": "E:\\--- VOSPLZEN\\AIK2\\ZP 4\\Pexeso\\version\\Pexeso\\Pexeso.csproj",
         "packagesPath": "C:\\Users\\Lucie\\.nuget\\packages\\",
-        "outputPath": "e:\\--- VOSPLZEN\\AIK2\\ZP 4\\Pexeso\\version\\Pexeso\\obj\\",
+        "outputPath": "E:\\--- VOSPLZEN\\AIK2\\ZP 4\\Pexeso\\version\\Pexeso\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Lucie\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -57,7 +57,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }

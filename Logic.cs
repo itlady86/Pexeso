@@ -10,8 +10,11 @@ namespace Pexeso
     public class Logic
     {
         private Form1 f1;
+        private Form2 f2;
 
-        private static int pocetKaret = 24;
+        public static int pocetKaret = 24;
+        public int pictNumber;
+        public Image tempImg;
 
         // cesty, adresáře
         private static string rootDir = new DirectoryInfo(Environment.CurrentDirectory).Parent.Parent.Parent.FullName;
@@ -53,16 +56,22 @@ namespace Pexeso
         public Image[] pole24 = new Image[pocetKaret];
 
         // posun pro zdvojené pole
-        private int offset = pocetKaret/2;
+        private int offset = pocetKaret / 2;
 
 
         public Logic() { }
 
-        public Logic(Form1 f1) 
+        public Logic(Form1 f1)
         {
             this.f1 = f1;
         }
 
+        public Logic(Form2 f2)
+        {
+            this.f2 = f2;
+        }
+
+        #region PredniStrana
         public void VyberMotiv(string motiv)
         {
             switch (motiv)
@@ -93,8 +102,28 @@ namespace Pexeso
                 pole24[i] = pole12[i];
                 pole24[i + offset] = pole12[i];
             }
-           
+
             return pole24;
         }
+        #endregion
+
+
+        //public Image OdkryjKartu()
+        //{
+        //    pictNumber = int.Parse(f2.pictName.Substring(10));
+
+        //    foreach (Karta kx in f2.karty)
+        //    {
+        //        if(pictNumber == kx.Id)
+        //        {
+        //            tempImg = kx.PredniStrana;   
+        //        }
+        //    }
+        //    return tempImg;
+        //}
+
+
+
+
     }
 }

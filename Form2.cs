@@ -21,17 +21,24 @@ namespace Pexeso
         public Board b = new Board(pozadiImg);
         public Karta k = new Karta();
 
-        
+        public List<Karta> karty = new List<Karta>();
+        public Image PredniStrana;
+        public Image tempImg;
+        public int[] id = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,
+                            13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24 };
+        public List<PictureBox> pictureBoxes = new List<PictureBox>();
 
-        //public Image[] pole24;
-
+        public string pictName = "";
+        public int pictNumber;
         public int shoda;
         public int otoceno;
+        public bool znovu = false;
         
 
         public Form2()
         {
             InitializeComponent();
+            Logic logic = new Logic(this);
         }
 
         private void Form2_Load(object sender, EventArgs e)
@@ -45,6 +52,7 @@ namespace Pexeso
         private void NovaHra()
         {
             RozdejKarty();
+            
         }
 
         #region Nastavení boardu
@@ -95,8 +103,35 @@ namespace Pexeso
         #endregion
 
 
+        
+        private List<Karta> UkazPredniStranu()
+        {
+            logic.VyberMotiv(vybranyMotiv);
+
+            // uložení pictureBoxů do Listu
+            foreach (PictureBox picture in tableLayoutPanel1.Controls)
+            {
+                pictureBoxes.Add(picture);
+            }
+
+            // ke každému pictureBoxu přidej Image + naplnění Listu karty
+            for (int i = 0; i < pictureBoxes.Count; i++)
+            {
+                for (int j = 0; j < logic.pole24.Length; j+=2)
+                {
+                    pictureBoxes[i].BackgroundImage = logic.pole24[i];
+                    karty.Add(new Karta(pictureBoxes[i].BackgroundImage, id[i]));
+                }
+            }
+
+            return karty;
+        }
+           
+  
+      
         private void RozdejKarty()
         {
+            UkazPredniStranu();
             UkazZadniStranu();
             shoda = 0;
             otoceno = 0;
@@ -104,29 +139,35 @@ namespace Pexeso
 
             //Aktualizuj();
         }
-
-
-
+        
+        
         // klik na jakoukoli kartu
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             PictureBox picture = (PictureBox)sender;
             picture.Enabled = false;
+            pictName = picture.Name;
+            pictNumber = int.Parse(pictName.Substring(10));
+
+            System.Diagnostics.Debug.WriteLine("PictName: " + pictName);
+            System.Diagnostics.Debug.WriteLine("PictNumber: " + pictNumber);
+
+            for (int i = 0; i < karty.Count; i++)
+            {
+                if (pictNumber == karty[i].Id)
+                {
+                    picture.BackgroundImage = karty[i].PredniStrana;
+                }
+            }
+            // picture.Refresh();
+
         }
 
         //DEBUG
         private void button1_Click(object sender, EventArgs e)
         {
-            logic.VyberMotiv(vybranyMotiv);
-            foreach (PictureBox picture in tableLayoutPanel1.Controls)
-            {
-                picture.BackgroundImageLayout = ImageLayout.Stretch;
-                for (int i = 0; i < logic.pole24.Length; i++)
-                {
-                    picture.BackgroundImage = logic.pole24[i];
-                }
-            }
-
+          
         }
     }
 }
+

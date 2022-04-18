@@ -59,7 +59,7 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button1.Location = new System.Drawing.Point(64, 570);
+            this.button1.Location = new System.Drawing.Point(64, 576);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(422, 52);
             this.button1.TabIndex = 1;
@@ -102,21 +102,21 @@
             // woodToolStripMenuItem
             // 
             this.woodToolStripMenuItem.Name = "woodToolStripMenuItem";
-            this.woodToolStripMenuItem.Size = new System.Drawing.Size(180, 26);
+            this.woodToolStripMenuItem.Size = new System.Drawing.Size(132, 26);
             this.woodToolStripMenuItem.Text = "wood";
             this.woodToolStripMenuItem.Click += new System.EventHandler(this.woodToolStripMenuItem_Click);
             // 
             // natureToolStripMenuItem
             // 
             this.natureToolStripMenuItem.Name = "natureToolStripMenuItem";
-            this.natureToolStripMenuItem.Size = new System.Drawing.Size(180, 26);
+            this.natureToolStripMenuItem.Size = new System.Drawing.Size(132, 26);
             this.natureToolStripMenuItem.Text = "nature";
             this.natureToolStripMenuItem.Click += new System.EventHandler(this.natureToolStripMenuItem_Click);
             // 
             // candlesToolStripMenuItem
             // 
             this.candlesToolStripMenuItem.Name = "candlesToolStripMenuItem";
-            this.candlesToolStripMenuItem.Size = new System.Drawing.Size(180, 26);
+            this.candlesToolStripMenuItem.Size = new System.Drawing.Size(132, 26);
             this.candlesToolStripMenuItem.Text = "candles";
             this.candlesToolStripMenuItem.Click += new System.EventHandler(this.candlesToolStripMenuItem_Click);
             // 
@@ -135,28 +135,28 @@
             // christmasToolStripMenuItem
             // 
             this.christmasToolStripMenuItem.Name = "christmasToolStripMenuItem";
-            this.christmasToolStripMenuItem.Size = new System.Drawing.Size(180, 26);
+            this.christmasToolStripMenuItem.Size = new System.Drawing.Size(147, 26);
             this.christmasToolStripMenuItem.Text = "christmas";
             this.christmasToolStripMenuItem.Click += new System.EventHandler(this.christmasToolStripMenuItem_Click);
             // 
             // emojiToolStripMenuItem
             // 
             this.emojiToolStripMenuItem.Name = "emojiToolStripMenuItem";
-            this.emojiToolStripMenuItem.Size = new System.Drawing.Size(180, 26);
+            this.emojiToolStripMenuItem.Size = new System.Drawing.Size(147, 26);
             this.emojiToolStripMenuItem.Text = "emoji";
             this.emojiToolStripMenuItem.Click += new System.EventHandler(this.emojiToolStripMenuItem_Click);
             // 
             // animalsToolStripMenuItem
             // 
             this.animalsToolStripMenuItem.Name = "animalsToolStripMenuItem";
-            this.animalsToolStripMenuItem.Size = new System.Drawing.Size(180, 26);
+            this.animalsToolStripMenuItem.Size = new System.Drawing.Size(147, 26);
             this.animalsToolStripMenuItem.Text = "animals";
             this.animalsToolStripMenuItem.Click += new System.EventHandler(this.animalsToolStripMenuItem_Click);
             // 
             // alphabetToolStripMenuItem
             // 
             this.alphabetToolStripMenuItem.Name = "alphabetToolStripMenuItem";
-            this.alphabetToolStripMenuItem.Size = new System.Drawing.Size(180, 26);
+            this.alphabetToolStripMenuItem.Size = new System.Drawing.Size(147, 26);
             this.alphabetToolStripMenuItem.Text = "alphabet";
             this.alphabetToolStripMenuItem.Click += new System.EventHandler(this.alphabetToolStripMenuItem_Click);
             // 
@@ -164,7 +164,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(545, 634);
+            this.ClientSize = new System.Drawing.Size(545, 656);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
@@ -172,7 +172,9 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(561, 695);
             this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(561, 695);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Pexeso | Memory Game";
