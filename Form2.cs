@@ -24,13 +24,17 @@ namespace Pexeso
         public Image PredniStrana;
         public Image tempImg1;
         public Image tempImg2;
+        public Image tempImage;
 
         public string pictName = "";
         public int pictNumber;
 
-        public int krok;
-        public int firstIndex;
-        public int nalezeno;       
+        public int trefa = 0;
+        public int konecHry = 12;
+        public int otoceno = 0;
+        public int skore = 0;
+        public int body = 10;
+
 
         public Form2()
         {
@@ -49,7 +53,7 @@ namespace Pexeso
         private void NovaHra()
         {
             RozdejKarty();
-            
+           
         }
 
         #region Nastavení boardu
@@ -100,6 +104,7 @@ namespace Pexeso
         #endregion
 
 
+
         
         private List<Karta> UkazPredniStranu()
         {
@@ -131,69 +136,353 @@ namespace Pexeso
         {
             UkazPredniStranu();
             UkazZadniStranu();
-            logic.shoda = false;
-            logic.otoceno = 0;
             tableLayoutPanel1.Enabled = true;
 
             //Aktualizuj();
         }
+
+     
+        public void Hra(int otoceno)
+        {
+            if (trefa <= konecHry)
+            {
+                if (otoceno == 0)
+                {
+                    otoceno++;
+                    PriradTempImage(otoceno);
+                    System.Diagnostics.Debug.WriteLine("První karta otočená");
+                }
+                else if (otoceno == 1)
+                {
+                    otoceno++;
+                    PriradTempImage(otoceno);
+                    System.Diagnostics.Debug.WriteLine("Druhá karta otočená");
+                    Vyhodnoceni(pictNumber, pictNumber);
+                }
+                //else if (otoceno == 2)
+                //{
+                //    otoceno = 0;
+                //}
+            } else
+            {
+                System.Diagnostics.Debug.WriteLine("KonecHry");
+            }
+
+        }
+
+        public Image TempImage()
+        {
+            for (int i = 0; i < logic.karty.Count; i++)
+            {
+                if (pictNumber + 1 == logic.karty[i].Id)
+                {
+                    logic.pictureBoxes[pictNumber].BackgroundImage = logic.karty[i].PredniStrana;
+                    break;
+                }
+            }
+            return tempImage;
+        }
+
+        public void PriradTempImage(int karta)
+        {
+            if (karta == 1)
+            {
+                tempImg1 = TempImage();
+            }
+            else if (karta == 2)
+            {
+                tempImg2 = TempImage();
+            }
+        }
+
+        public void Vyhodnoceni(int prvniKarta, int druhaKarta)
+        {
+            // obě karty shodné
+            if (logic.pictureBoxes[prvniKarta].Tag == logic.pictureBoxes[druhaKarta].Tag)
+            {
+                System.Diagnostics.Debug.WriteLine("Karta1: " + logic.pictureBoxes[prvniKarta].Tag);
+                System.Diagnostics.Debug.WriteLine("Karta2: " + logic.pictureBoxes[druhaKarta].Tag);
+                System.Diagnostics.Debug.WriteLine("Trefa");
+                trefa++;
+                // prední strana zustane 
+                logic.pictureBoxes[prvniKarta].BackgroundImage = logic.karty[prvniKarta].PredniStrana;
+                logic.pictureBoxes[druhaKarta].BackgroundImage = logic.karty[druhaKarta].PredniStrana;
+
+
+                //vynulování dočasných image
+                System.Diagnostics.Debug.WriteLine("Nuluju image");
+                tempImg1 = null;
+                tempImg2 = null;
+
+                // skore skáče po 10ti bodech
+                skore += body;
+                label2.Text = Convert.ToString(skore);
+                otoceno = 0;
+            }
+            else
+            {
+                //timer - po dobu 1s 
+                timer1.Start();
+                // zadní strana
+                logic.pictureBoxes[prvniKarta].BackgroundImage = k.ZadniStrana;
+                logic.pictureBoxes[druhaKarta].BackgroundImage = k.ZadniStrana;
+                //vynulování dočasných image
+                tempImg1 = null;
+                tempImg2 = null;
+            }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            timer1.Stop();
+        }
         
         
-        // klik na jakoukoli kartu
+        // klik na kartu
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             PictureBox picture = (PictureBox)sender;
             picture.Enabled = false;
             pictName = picture.Name;
-            pictNumber = int.Parse(pictName.Substring(10));
-
-            for (int i = 0; i < logic.karty.Count; i++)
-            {
-                if (pictNumber == logic.karty[i].Id)
-                {
-                    picture.BackgroundImage = logic.karty[i].PredniStrana;
-                    break;
-                }
-            }
-
-            if (tempImg1 == null)
-            {
-                tempImg1 = picture.BackgroundImage;
-                System.Diagnostics.Debug.WriteLine("První karta");
-                System.Diagnostics.Debug.WriteLine("Tag: " + picture.Tag.ToString());
-            }
-            else if (tempImg1 != null && tempImg2 == null)
-            {
-                tempImg2 = picture.BackgroundImage;
-                System.Diagnostics.Debug.WriteLine("Druhá karta");
-            }
-
-            if (tempImg2 != null && tempImg2 != null)
-            {
-                if (tempImg1.Tag == tempImg2.Tag)
-                {
-                    System.Diagnostics.Debug.WriteLine("Trefa");
-                    tempImg1 = null;
-                    tempImg2 = null;
-                    picture.Enabled = false;
-                    //skore zde
-                }
-                else
-                    //není shoda
-                    System.Diagnostics.Debug.WriteLine("Otočka");
-                    // casovac
-            }  
-
-            picture.Refresh();
-
+            pictNumber = int.Parse(pictName.Substring(10)) - 1;
+            Hra(otoceno);
+            otoceno++;
         }
       
-
-
-        //DEBUG
-        private void button1_Click(object sender, EventArgs e)
+        private void pictureBox2_Click(object sender, EventArgs e)
         {
-          
+            PictureBox picture = (PictureBox)sender;
+            picture.Enabled = false;
+            pictName = picture.Name;
+            pictNumber = int.Parse(pictName.Substring(10)) - 1;
+           
+            Hra(otoceno);
+            otoceno++;
+
+        }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+            PictureBox picture = (PictureBox)sender;
+            picture.Enabled = false;
+            pictName = picture.Name;
+            pictNumber = int.Parse(pictName.Substring(10)) - 1;
+           
+            Hra(otoceno);
+            otoceno++;
+        }
+
+        private void pictureBox4_Click(object sender, EventArgs e)
+        {
+            PictureBox picture = (PictureBox)sender;
+            picture.Enabled = false;
+            pictName = picture.Name;
+            pictNumber = int.Parse(pictName.Substring(10)) - 1;
+            Hra(otoceno);
+            otoceno++;
+        }
+
+        private void pictureBox5_Click(object sender, EventArgs e)
+        {
+            PictureBox picture = (PictureBox)sender;
+            picture.Enabled = false;
+            pictName = picture.Name;
+            pictNumber = int.Parse(pictName.Substring(10)) - 1;
+            Hra(otoceno);
+            otoceno++;
+        }
+
+        private void pictureBox6_Click(object sender, EventArgs e)
+        {
+            PictureBox picture = (PictureBox)sender;
+            picture.Enabled = false;
+            pictName = picture.Name;
+            pictNumber = int.Parse(pictName.Substring(10)) - 1;
+            Hra(otoceno);
+            otoceno++;
+        }
+
+        private void pictureBox7_Click(object sender, EventArgs e)
+        {
+            PictureBox picture = (PictureBox)sender;
+            picture.Enabled = false;
+            pictName = picture.Name;
+            pictNumber = int.Parse(pictName.Substring(10)) - 1;
+            Hra(otoceno);
+            otoceno++;
+        }
+
+        private void pictureBox8_Click(object sender, EventArgs e)
+        {
+            PictureBox picture = (PictureBox)sender;
+            picture.Enabled = false;
+            pictName = picture.Name;
+            pictNumber = int.Parse(pictName.Substring(10)) - 1;
+            Hra(otoceno);
+            otoceno++;
+        }
+
+        private void pictureBox9_Click(object sender, EventArgs e)
+        {
+            PictureBox picture = (PictureBox)sender;
+            picture.Enabled = false;
+            pictName = picture.Name;
+            pictNumber = int.Parse(pictName.Substring(10)) - 1;
+            Hra(otoceno);
+            otoceno++;
+        }
+
+        private void pictureBox10_Click(object sender, EventArgs e)
+        {
+            PictureBox picture = (PictureBox)sender;
+            picture.Enabled = false;
+            pictName = picture.Name;
+            pictNumber = int.Parse(pictName.Substring(10)) - 1;
+            Hra(otoceno);
+            otoceno++;
+        }
+
+        private void pictureBox11_Click(object sender, EventArgs e)
+        {
+            PictureBox picture = (PictureBox)sender;
+            picture.Enabled = false;
+            pictName = picture.Name;
+            pictNumber = int.Parse(pictName.Substring(10)) - 1;
+            Hra(otoceno);
+            otoceno++;
+        }
+
+        private void pictureBox12_Click(object sender, EventArgs e)
+        {
+            PictureBox picture = (PictureBox)sender;
+            picture.Enabled = false;
+            pictName = picture.Name;
+            pictNumber = int.Parse(pictName.Substring(10)) - 1;
+            Hra(otoceno);
+            otoceno++;
+        }
+
+        private void pictureBox13_Click(object sender, EventArgs e)
+        {
+            PictureBox picture = (PictureBox)sender;
+            picture.Enabled = false;
+            pictName = picture.Name;
+            pictNumber = int.Parse(pictName.Substring(10)) - 1;
+            Hra(otoceno);
+            otoceno++;
+        }
+
+        private void pictureBox14_Click(object sender, EventArgs e)
+        {
+            PictureBox picture = (PictureBox)sender;
+            picture.Enabled = false;
+            pictName = picture.Name;
+            pictNumber = int.Parse(pictName.Substring(10)) - 1;
+            Hra(otoceno);
+            otoceno++;
+        }
+
+
+        private void pictureBox15_Click(object sender, EventArgs e)
+        {
+            PictureBox picture = (PictureBox)sender;
+            picture.Enabled = false;
+            pictName = picture.Name;
+            pictNumber = int.Parse(pictName.Substring(10)) - 1;
+            Hra(otoceno);
+            otoceno++;
+        }
+
+        private void pictureBox16_Click(object sender, EventArgs e)
+        {
+            PictureBox picture = (PictureBox)sender;
+            picture.Enabled = false;
+            pictName = picture.Name;
+            pictNumber = int.Parse(pictName.Substring(10)) - 1;
+            Hra(otoceno);
+            otoceno++;
+        }
+
+        private void pictureBox17_Click(object sender, EventArgs e)
+        {
+            PictureBox picture = (PictureBox)sender;
+            picture.Enabled = false;
+            pictName = picture.Name;
+            pictNumber = int.Parse(pictName.Substring(10)) - 1;
+            Hra(otoceno);
+            otoceno++;
+        }
+
+        private void pictureBox18_Click(object sender, EventArgs e)
+        {
+            PictureBox picture = (PictureBox)sender;
+            picture.Enabled = false;
+            pictName = picture.Name;
+            pictNumber = int.Parse(pictName.Substring(10)) - 1;
+            Hra(otoceno);
+            otoceno++;
+        }
+
+        private void pictureBox19_Click(object sender, EventArgs e)
+        {
+            PictureBox picture = (PictureBox)sender;
+            picture.Enabled = false;
+            pictName = picture.Name;
+            pictNumber = int.Parse(pictName.Substring(10)) - 1;
+            Hra(otoceno);
+            otoceno++;
+        }
+
+        private void pictureBox20_Click(object sender, EventArgs e)
+        {
+            PictureBox picture = (PictureBox)sender;
+            picture.Enabled = false;
+            pictName = picture.Name;
+            pictNumber = int.Parse(pictName.Substring(10)) - 1;
+            Hra(otoceno);
+            otoceno++;
+        }
+
+        private void pictureBox21_Click(object sender, EventArgs e)
+        {
+            PictureBox picture = (PictureBox)sender;
+            picture.Enabled = false;
+            pictName = picture.Name;
+            pictNumber = int.Parse(pictName.Substring(10)) - 1;
+            Hra(otoceno);
+            otoceno++;
+        }
+
+        private void pictureBox22_Click(object sender, EventArgs e)
+        {
+            PictureBox picture = (PictureBox)sender;
+            picture.Enabled = false;
+            pictName = picture.Name;
+            pictNumber = int.Parse(pictName.Substring(10)) - 1;
+            Hra(otoceno);
+            otoceno++;
+        }
+
+        private void pictureBox23_Click(object sender, EventArgs e)
+        {
+            PictureBox picture = (PictureBox)sender;
+            picture.Enabled = false;
+            pictName = picture.Name;
+            pictNumber = int.Parse(pictName.Substring(10)) - 1;
+            Hra(otoceno);
+            otoceno++;
+        }
+
+        private void pictureBox24_Click(object sender, EventArgs e)
+        {
+            PictureBox picture = (PictureBox)sender;
+            picture.Enabled = false;
+            pictName = picture.Name;
+            pictNumber = int.Parse(pictName.Substring(10)) - 1;
+            System.Diagnostics.Debug.WriteLine("Name: " + pictName);
+            System.Diagnostics.Debug.WriteLine("PictNumber: " + pictNumber);
+            Hra(otoceno);
+            otoceno++;
         }
     }
 }

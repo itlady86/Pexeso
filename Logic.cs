@@ -63,7 +63,7 @@ namespace Pexeso
         public List<PictureBox> pictureBoxes = new List<PictureBox>();
 
         public bool shoda;
-        public int otoceno;
+        public int otoceno = 0;
         public bool znovu = false;
 
 
@@ -115,6 +115,21 @@ namespace Pexeso
         }
         #endregion
 
+        public void Test(int otoceno)
+        {
+            switch(otoceno)
+            {
+                case 0: 
+                    
+                    otoceno = 1;
+                    break;
+                case 1: 
+                    otoceno = 2;
+                    break;
+                case 2: otoceno = 0;
+                    break;
+            }
+        }
 
     }
 
@@ -122,3 +137,4 @@ namespace Pexeso
 
     
 }
+
