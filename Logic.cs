@@ -13,7 +13,6 @@ namespace Pexeso
         private Form2 f2;
 
         public static int pocetKaret = 24;
-        public int pictNumber;
         public Image tempImg;
 
         // cesty, adresáře
@@ -57,6 +56,15 @@ namespace Pexeso
 
         // posun pro zdvojené pole
         private int offset = pocetKaret / 2;
+
+        public List<Karta> karty = new List<Karta>();
+        public int[] id = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,
+                            13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24 };
+        public List<PictureBox> pictureBoxes = new List<PictureBox>();
+
+        public bool shoda;
+        public int otoceno;
+        public bool znovu = false;
 
 
         public Logic() { }
@@ -108,22 +116,9 @@ namespace Pexeso
         #endregion
 
 
-        //public Image OdkryjKartu()
-        //{
-        //    pictNumber = int.Parse(f2.pictName.Substring(10));
-
-        //    foreach (Karta kx in f2.karty)
-        //    {
-        //        if(pictNumber == kx.Id)
-        //        {
-        //            tempImg = kx.PredniStrana;   
-        //        }
-        //    }
-        //    return tempImg;
-        //}
-
-
-
-
     }
+
+
+
+    
 }

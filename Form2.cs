@@ -21,19 +21,16 @@ namespace Pexeso
         public Board b = new Board(pozadiImg);
         public Karta k = new Karta();
 
-        public List<Karta> karty = new List<Karta>();
         public Image PredniStrana;
-        public Image tempImg;
-        public int[] id = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,
-                            13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24 };
-        public List<PictureBox> pictureBoxes = new List<PictureBox>();
+        public Image tempImg1;
+        public Image tempImg2;
 
         public string pictName = "";
         public int pictNumber;
-        public int shoda;
-        public int otoceno;
-        public bool znovu = false;
-        
+
+        public int krok;
+        public int firstIndex;
+        public int nalezeno;       
 
         public Form2()
         {
@@ -111,20 +108,21 @@ namespace Pexeso
             // uložení pictureBoxů do Listu
             foreach (PictureBox picture in tableLayoutPanel1.Controls)
             {
-                pictureBoxes.Add(picture);
+                logic.pictureBoxes.Add(picture);
             }
 
             // ke každému pictureBoxu přidej Image + naplnění Listu karty
-            for (int i = 0; i < pictureBoxes.Count; i++)
+            for (int i = 0; i < logic.pictureBoxes.Count; i++)
             {
                 for (int j = 0; j < logic.pole24.Length; j+=2)
                 {
-                    pictureBoxes[i].BackgroundImage = logic.pole24[i];
-                    karty.Add(new Karta(pictureBoxes[i].BackgroundImage, id[i]));
+                    logic.pictureBoxes[i].BackgroundImage = logic.pole24[i];
+                    logic.karty.Add(new Karta(logic.pictureBoxes[i].BackgroundImage, logic.id[i]));
+                    break;
                 }
             }
 
-            return karty;
+            return logic.karty;
         }
            
   
@@ -133,8 +131,8 @@ namespace Pexeso
         {
             UkazPredniStranu();
             UkazZadniStranu();
-            shoda = 0;
-            otoceno = 0;
+            logic.shoda = false;
+            logic.otoceno = 0;
             tableLayoutPanel1.Enabled = true;
 
             //Aktualizuj();
@@ -149,19 +147,48 @@ namespace Pexeso
             pictName = picture.Name;
             pictNumber = int.Parse(pictName.Substring(10));
 
-            System.Diagnostics.Debug.WriteLine("PictName: " + pictName);
-            System.Diagnostics.Debug.WriteLine("PictNumber: " + pictNumber);
-
-            for (int i = 0; i < karty.Count; i++)
+            for (int i = 0; i < logic.karty.Count; i++)
             {
-                if (pictNumber == karty[i].Id)
+                if (pictNumber == logic.karty[i].Id)
                 {
-                    picture.BackgroundImage = karty[i].PredniStrana;
+                    picture.BackgroundImage = logic.karty[i].PredniStrana;
+                    break;
                 }
             }
-            // picture.Refresh();
+
+            if (tempImg1 == null)
+            {
+                tempImg1 = picture.BackgroundImage;
+                System.Diagnostics.Debug.WriteLine("První karta");
+                System.Diagnostics.Debug.WriteLine("Tag: " + picture.Tag.ToString());
+            }
+            else if (tempImg1 != null && tempImg2 == null)
+            {
+                tempImg2 = picture.BackgroundImage;
+                System.Diagnostics.Debug.WriteLine("Druhá karta");
+            }
+
+            if (tempImg2 != null && tempImg2 != null)
+            {
+                if (tempImg1.Tag == tempImg2.Tag)
+                {
+                    System.Diagnostics.Debug.WriteLine("Trefa");
+                    tempImg1 = null;
+                    tempImg2 = null;
+                    picture.Enabled = false;
+                    //skore zde
+                }
+                else
+                    //není shoda
+                    System.Diagnostics.Debug.WriteLine("Otočka");
+                    // casovac
+            }  
+
+            picture.Refresh();
 
         }
+      
+
 
         //DEBUG
         private void button1_Click(object sender, EventArgs e)
