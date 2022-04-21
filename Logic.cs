@@ -58,13 +58,10 @@ namespace Pexeso
         private int offset = pocetKaret / 2;
 
         public List<Karta> karty = new List<Karta>();
-        public int[] id = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,
-                            13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24 };
+        public int[] id = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,
+                            13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23 };
         public List<PictureBox> pictureBoxes = new List<PictureBox>();
-
-        public bool shoda;
-        public int otoceno = 0;
-        public bool znovu = false;
+    
 
 
         public Logic() { }
@@ -115,26 +112,11 @@ namespace Pexeso
         }
         #endregion
 
-        public void Test(int otoceno)
-        {
-            switch(otoceno)
-            {
-                case 0: 
-                    
-                    otoceno = 1;
-                    break;
-                case 1: 
-                    otoceno = 2;
-                    break;
-                case 2: otoceno = 0;
-                    break;
-            }
-        }
-
-    }
 
 
+       
 
-    
+
+    }    
 }
 

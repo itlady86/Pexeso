@@ -181,6 +181,7 @@
             // pictureBox1
             // 
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox1.Location = new System.Drawing.Point(3, 3);
             this.pictureBox1.Name = "pictureBox1";
@@ -192,6 +193,7 @@
             // 
             // pictureBox2
             // 
+            this.pictureBox2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox2.Location = new System.Drawing.Point(163, 3);
             this.pictureBox2.Name = "pictureBox2";
@@ -199,10 +201,11 @@
             this.pictureBox2.TabIndex = 1;
             this.pictureBox2.TabStop = false;
             this.pictureBox2.Tag = "2";
-            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
+            this.pictureBox2.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // pictureBox3
             // 
+            this.pictureBox3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox3.Location = new System.Drawing.Point(323, 3);
             this.pictureBox3.Name = "pictureBox3";
@@ -210,10 +213,11 @@
             this.pictureBox3.TabIndex = 2;
             this.pictureBox3.TabStop = false;
             this.pictureBox3.Tag = "3";
-            this.pictureBox3.Click += new System.EventHandler(this.pictureBox3_Click);
+            this.pictureBox3.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // pictureBox4
             // 
+            this.pictureBox4.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox4.Location = new System.Drawing.Point(483, 3);
             this.pictureBox4.Name = "pictureBox4";
@@ -221,10 +225,11 @@
             this.pictureBox4.TabIndex = 3;
             this.pictureBox4.TabStop = false;
             this.pictureBox4.Tag = "4";
-            this.pictureBox4.Click += new System.EventHandler(this.pictureBox4_Click);
+            this.pictureBox4.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // pictureBox5
             // 
+            this.pictureBox5.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox5.Location = new System.Drawing.Point(643, 3);
             this.pictureBox5.Name = "pictureBox5";
@@ -232,21 +237,22 @@
             this.pictureBox5.TabIndex = 4;
             this.pictureBox5.TabStop = false;
             this.pictureBox5.Tag = "5";
-            this.pictureBox5.Click += new System.EventHandler(this.pictureBox5_Click);
+            this.pictureBox5.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // pictureBox6
             // 
-            this.pictureBox6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox6.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox6.Location = new System.Drawing.Point(803, 3);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(142, 143);
             this.pictureBox6.TabIndex = 5;
             this.pictureBox6.TabStop = false;
             this.pictureBox6.Tag = "6";
-            this.pictureBox6.Click += new System.EventHandler(this.pictureBox6_Click);
+            this.pictureBox6.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // pictureBox7
             // 
+            this.pictureBox7.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox7.Location = new System.Drawing.Point(3, 165);
             this.pictureBox7.Name = "pictureBox7";
@@ -254,10 +260,11 @@
             this.pictureBox7.TabIndex = 6;
             this.pictureBox7.TabStop = false;
             this.pictureBox7.Tag = "7";
-            this.pictureBox7.Click += new System.EventHandler(this.pictureBox7_Click);
+            this.pictureBox7.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // pictureBox8
             // 
+            this.pictureBox8.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox8.Location = new System.Drawing.Point(163, 165);
             this.pictureBox8.Name = "pictureBox8";
@@ -265,10 +272,11 @@
             this.pictureBox8.TabIndex = 7;
             this.pictureBox8.TabStop = false;
             this.pictureBox8.Tag = "8";
-            this.pictureBox8.Click += new System.EventHandler(this.pictureBox8_Click);
+            this.pictureBox8.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // pictureBox9
             // 
+            this.pictureBox9.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox9.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox9.Location = new System.Drawing.Point(323, 165);
             this.pictureBox9.Name = "pictureBox9";
@@ -276,10 +284,11 @@
             this.pictureBox9.TabIndex = 8;
             this.pictureBox9.TabStop = false;
             this.pictureBox9.Tag = "9";
-            this.pictureBox9.Click += new System.EventHandler(this.pictureBox9_Click);
+            this.pictureBox9.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // pictureBox10
             // 
+            this.pictureBox10.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox10.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox10.Location = new System.Drawing.Point(483, 165);
             this.pictureBox10.Name = "pictureBox10";
@@ -287,10 +296,11 @@
             this.pictureBox10.TabIndex = 9;
             this.pictureBox10.TabStop = false;
             this.pictureBox10.Tag = "10";
-            this.pictureBox10.Click += new System.EventHandler(this.pictureBox10_Click);
+            this.pictureBox10.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // pictureBox11
             // 
+            this.pictureBox11.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox11.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox11.Location = new System.Drawing.Point(643, 165);
             this.pictureBox11.Name = "pictureBox11";
@@ -298,10 +308,11 @@
             this.pictureBox11.TabIndex = 10;
             this.pictureBox11.TabStop = false;
             this.pictureBox11.Tag = "11";
-            this.pictureBox11.Click += new System.EventHandler(this.pictureBox11_Click);
+            this.pictureBox11.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // pictureBox12
             // 
+            this.pictureBox12.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox12.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox12.Location = new System.Drawing.Point(803, 165);
             this.pictureBox12.Name = "pictureBox12";
@@ -309,10 +320,11 @@
             this.pictureBox12.TabIndex = 11;
             this.pictureBox12.TabStop = false;
             this.pictureBox12.Tag = "12";
-            this.pictureBox12.Click += new System.EventHandler(this.pictureBox12_Click);
+            this.pictureBox12.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // pictureBox13
             // 
+            this.pictureBox13.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox13.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox13.Location = new System.Drawing.Point(3, 327);
             this.pictureBox13.Name = "pictureBox13";
@@ -320,10 +332,11 @@
             this.pictureBox13.TabIndex = 12;
             this.pictureBox13.TabStop = false;
             this.pictureBox13.Tag = "1";
-            this.pictureBox13.Click += new System.EventHandler(this.pictureBox13_Click);
+            this.pictureBox13.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // pictureBox14
             // 
+            this.pictureBox14.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox14.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox14.Location = new System.Drawing.Point(163, 327);
             this.pictureBox14.Name = "pictureBox14";
@@ -331,10 +344,11 @@
             this.pictureBox14.TabIndex = 13;
             this.pictureBox14.TabStop = false;
             this.pictureBox14.Tag = "2";
-            this.pictureBox14.Click += new System.EventHandler(this.pictureBox14_Click);
+            this.pictureBox14.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // pictureBox15
             // 
+            this.pictureBox15.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox15.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox15.Location = new System.Drawing.Point(323, 327);
             this.pictureBox15.Name = "pictureBox15";
@@ -342,10 +356,11 @@
             this.pictureBox15.TabIndex = 14;
             this.pictureBox15.TabStop = false;
             this.pictureBox15.Tag = "3";
-            this.pictureBox15.Click += new System.EventHandler(this.pictureBox15_Click);
+            this.pictureBox15.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // pictureBox16
             // 
+            this.pictureBox16.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox16.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox16.Location = new System.Drawing.Point(483, 327);
             this.pictureBox16.Name = "pictureBox16";
@@ -353,10 +368,11 @@
             this.pictureBox16.TabIndex = 15;
             this.pictureBox16.TabStop = false;
             this.pictureBox16.Tag = "4";
-            this.pictureBox16.Click += new System.EventHandler(this.pictureBox16_Click);
+            this.pictureBox16.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // pictureBox17
             // 
+            this.pictureBox17.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox17.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox17.Location = new System.Drawing.Point(643, 327);
             this.pictureBox17.Name = "pictureBox17";
@@ -364,10 +380,11 @@
             this.pictureBox17.TabIndex = 16;
             this.pictureBox17.TabStop = false;
             this.pictureBox17.Tag = "5";
-            this.pictureBox17.Click += new System.EventHandler(this.pictureBox17_Click);
+            this.pictureBox17.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // pictureBox18
             // 
+            this.pictureBox18.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox18.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox18.Location = new System.Drawing.Point(803, 327);
             this.pictureBox18.Name = "pictureBox18";
@@ -375,10 +392,11 @@
             this.pictureBox18.TabIndex = 17;
             this.pictureBox18.TabStop = false;
             this.pictureBox18.Tag = "6";
-            this.pictureBox18.Click += new System.EventHandler(this.pictureBox18_Click);
+            this.pictureBox18.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // pictureBox19
             // 
+            this.pictureBox19.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox19.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox19.Location = new System.Drawing.Point(3, 489);
             this.pictureBox19.Name = "pictureBox19";
@@ -386,10 +404,11 @@
             this.pictureBox19.TabIndex = 18;
             this.pictureBox19.TabStop = false;
             this.pictureBox19.Tag = "7";
-            this.pictureBox19.Click += new System.EventHandler(this.pictureBox19_Click);
+            this.pictureBox19.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // pictureBox20
             // 
+            this.pictureBox20.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox20.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox20.Location = new System.Drawing.Point(163, 489);
             this.pictureBox20.Name = "pictureBox20";
@@ -397,10 +416,11 @@
             this.pictureBox20.TabIndex = 19;
             this.pictureBox20.TabStop = false;
             this.pictureBox20.Tag = "8";
-            this.pictureBox20.Click += new System.EventHandler(this.pictureBox20_Click);
+            this.pictureBox20.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // pictureBox21
             // 
+            this.pictureBox21.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox21.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox21.Location = new System.Drawing.Point(323, 489);
             this.pictureBox21.Name = "pictureBox21";
@@ -408,10 +428,11 @@
             this.pictureBox21.TabIndex = 20;
             this.pictureBox21.TabStop = false;
             this.pictureBox21.Tag = "9";
-            this.pictureBox21.Click += new System.EventHandler(this.pictureBox21_Click);
+            this.pictureBox21.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // pictureBox22
             // 
+            this.pictureBox22.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox22.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox22.Location = new System.Drawing.Point(483, 489);
             this.pictureBox22.Name = "pictureBox22";
@@ -419,10 +440,11 @@
             this.pictureBox22.TabIndex = 21;
             this.pictureBox22.TabStop = false;
             this.pictureBox22.Tag = "10";
-            this.pictureBox22.Click += new System.EventHandler(this.pictureBox22_Click);
+            this.pictureBox22.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // pictureBox23
             // 
+            this.pictureBox23.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox23.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox23.Location = new System.Drawing.Point(643, 489);
             this.pictureBox23.Name = "pictureBox23";
@@ -430,10 +452,11 @@
             this.pictureBox23.TabIndex = 22;
             this.pictureBox23.TabStop = false;
             this.pictureBox23.Tag = "11";
-            this.pictureBox23.Click += new System.EventHandler(this.pictureBox23_Click);
+            this.pictureBox23.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // pictureBox24
             // 
+            this.pictureBox24.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox24.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox24.Location = new System.Drawing.Point(803, 489);
             this.pictureBox24.Name = "pictureBox24";
@@ -441,12 +464,11 @@
             this.pictureBox24.TabIndex = 23;
             this.pictureBox24.TabStop = false;
             this.pictureBox24.Tag = "12";
-            this.pictureBox24.Click += new System.EventHandler(this.pictureBox24_Click);
+            this.pictureBox24.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // timer1
             // 
-            this.timer1.Enabled = true;
-            this.timer1.Interval = 1000;
+            this.timer1.Interval = 2000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // Form2
