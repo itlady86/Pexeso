@@ -27,19 +27,22 @@ namespace Pexeso
         public Image tempImage;
 
         public string pictName;
-        public int pictNumber = -1;
+        public int pictNumber;
 
-        public int trefa = 0;
-        public int konecHry = 12;
+        public bool znovu = false;
         public int otoceno = 0;
         public int skore = 0;
         public int prictiBody = 10;
+        public int trefa = 0;
+        public int konec = Logic.pocetKaret/2;  //12
 
         public int prvniKarta;
         public int druhaKarta;
         public int tag;
         public int tag1;
         public int tag2;
+
+
 
         public Form2()
         {
@@ -51,14 +54,10 @@ namespace Pexeso
         {
             SestavBoard(vybranePozadi);
             b.PozadiImg = pozadiImg;
-            RozdejKarty();
-            //while (trefa < konecHry)
-            //{
-            //}
-          
+            Hra();
         }
 
-        // po odkyrtí dvou karet, které nejsou stejné, čeká 2s, pak otočí kartu zadní stranou nahoru
+        // po odkrytí dvou karet, které nejsou stejné, čeká 2s, pak otočí kartu zadní stranou nahoru
         private void timer1_Tick(object sender, EventArgs e)
         {
             timer1.Stop();
@@ -112,9 +111,7 @@ namespace Pexeso
         }
         #endregion
 
-
-
-        
+        #region Přední strana
         private List<Karta> UkazPredniStranu()
         {
             logic.VyberMotiv(vybranyMotiv);
@@ -138,17 +135,94 @@ namespace Pexeso
 
             return logic.karty;
         }
+        #endregion
 
+        private void Hra()
+        {
+            do
+            {
+                RozdejKarty();
+            }
+            while (znovu);
+        }
 
         private void RozdejKarty()
         {
             UkazPredniStranu();
             UkazZadniStranu();
-            tableLayoutPanel1.Enabled = true;
-
         }
 
-              
+        #region Kontrola otočení 1 páru karet - přiřazení obrázku, vyhodnocení rovnosti
+        private void Kolo(int otoceno)
+        {
+            switch (otoceno)
+            {
+                case 1:
+                    PriradTempImage(otoceno);
+                    prvniKarta = pictNumber;
+                    tag1 = tag;
+                    break;
+                case 2:
+                    PriradTempImage(otoceno);
+                    druhaKarta = pictNumber;
+                    tag2 = tag;
+                    Vyhodnot(tag1, tag2);
+                    break;
+            }
+        }
+        private void PriradTempImage(int poradiKarty)
+        {
+            switch (poradiKarty)
+            {
+                case 1:
+                    tempImg1 = TempImage(pictNumber);
+                    break;
+
+                case 2:
+                    tempImg2 = TempImage(pictNumber);
+                    break;
+            }
+        }
+            
+        public Image TempImage(int pictNumber)
+        {
+            for (int i = 0; i < logic.karty.Count; i++)
+            {
+                if (logic.karty[i].Id == pictNumber)
+                {
+                    for (int j = 0; j < logic.pictureBoxes.Count; j++)
+                    {
+                        logic.pictureBoxes[pictNumber].BackgroundImage = logic.karty[pictNumber].PredniStrana;
+                    }
+                    break;
+                }
+                
+            }
+            return tempImage;
+        }
+
+        private void Vyhodnot(int tag1, int tag2)
+        {
+            if (tag1 != tag2) 
+            {
+                // uvnitř následující metody otočení karet zadní stranou nahoru
+                timer1.Start();
+                otoceno = 0;
+            }
+            else
+            {   // nalezen pár shodných karet
+                trefa++;
+                System.Diagnostics.Debug.WriteLine("Trefa: " + trefa.ToString());
+                otoceno = 0;
+
+                //TODO: všechny karty otočené
+
+                //Skore
+
+                skore += prictiBody;
+                label2.Text = skore.ToString();
+            }
+        }
         private void SchovejKartu(int prvniKarta, int druhaKarta)
         {
             for (int i = 0; i < logic.karty.Count; i++)
@@ -169,92 +243,20 @@ namespace Pexeso
                 }
             }
         }
+        #endregion
 
-        private void Kolo(int otoceno)
-        {
-            switch (otoceno)
-            {
-                case 1:
-                    PriradTempImage(otoceno);
-                    prvniKarta = pictNumber;
-                    tag1 = tag;
-                    break;
-                case 2:
-                    PriradTempImage(otoceno);
-                    druhaKarta = pictNumber;
-                    tag2 = tag;
-                    Vyhodnot(tag1, tag2);
 
-                    // vynulování otočení karet
-                    otoceno = 0;
-                    break;
-            }
-        }
-
-    
-        public Image TempImage(int pictNumber)
-        {
-            for (int i = 0; i < logic.karty.Count; i++)
-            {
-                if (logic.karty[i].Id == pictNumber)
-                {
-                    for (int j = 0; j < logic.pictureBoxes.Count; j++)
-                    {
-                        logic.pictureBoxes[pictNumber].BackgroundImage = logic.karty[pictNumber].PredniStrana;
-                    }
-                    break;
-                }
-                
-            }
-            return tempImage;
-        }
-
-        private void PriradTempImage(int poradiKarty)
-        {
-            switch (poradiKarty)
-            {
-                case 1:
-                    tempImg1 = TempImage(pictNumber);
-                    break;
-
-                case 2:
-                    tempImg2 = TempImage(pictNumber);
-                    break;
-            }
-        }
-
-        
-        private void Vyhodnot(int tag1, int tag2)
-        {
-            if (tag1 != tag2) 
-            {
-                // uvnitř následující metody otočení karet zadní stranou nahoru
-                timer1.Start();
-            }
-            else
-            {   // nalezen pár shodných karet
-
-                
-            }
-
-        }
-
-      
 
         // klik na kartu
-        private void pictureBox1_Click(object sender, EventArgs e)
+        private void KartaClick(object sender, EventArgs e)
         {
             PictureBox picture = (PictureBox)sender;
-            //picture.Enabled = false;
-            picture.Cursor = Cursors.Hand;
             pictName = picture.Name;        // pictureBox1 - pictureBox24
             tag = Convert.ToInt32(picture.Tag);
             pictNumber = int.Parse(pictName.Substring(10)) - 1;     // číslo 0-23
             otoceno++;
             Kolo(otoceno);
         }
-      
-       
     }
 }
 
