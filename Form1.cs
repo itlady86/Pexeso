@@ -40,7 +40,6 @@ namespace Pexeso
             woodToolStripMenuItem.Checked = true;
             natureToolStripMenuItem.Checked = false;
             candlesToolStripMenuItem.Checked = false;
-
         }
 
         private void natureToolStripMenuItem_Click(object sender, EventArgs e)

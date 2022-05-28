@@ -34,16 +34,18 @@ namespace Pexeso
         public int skore = 0;
         public int prictiBody = 10;
         public int trefa = 0;
-        public int konec = Logic.pocetKaret/2;  //12
+        public int konec = 12;
 
+        public Random rnd = new Random();
         public int prvniKarta;
         public int druhaKarta;
+        public string p1;
+        public string p2;
         public int tag;
         public int tag1;
         public int tag2;
 
-
-
+       
         public Form2()
         {
             InitializeComponent();
@@ -55,6 +57,7 @@ namespace Pexeso
             SestavBoard(vybranePozadi);
             b.PozadiImg = pozadiImg;
             Hra();
+            
         }
 
         // po odkrytí dvou karet, které nejsou stejné, čeká 2s, pak otočí kartu zadní stranou nahoru
@@ -100,7 +103,6 @@ namespace Pexeso
         #endregion
 
         #region Zadní strana
-
         private void UkazZadniStranu()
         {
             foreach(PictureBox picture in tableLayoutPanel1.Controls)
@@ -122,37 +124,33 @@ namespace Pexeso
                 logic.pictureBoxes.Add(picture);
             }
 
-            // ke každému pictureBoxu přidej Image + naplnění Listu karty
+            // ke každému pictureBoxu přidej Image
             for (int i = 0; i < logic.pictureBoxes.Count; i++)
             {
-                for (int j = 0; j < logic.pole24.Length; j+=2)
+                for (int j = 0; j < logic.pole24.Length; j++)
                 {
                     logic.pictureBoxes[i].BackgroundImage = logic.pole24[i];
-                    logic.karty.Add(new Karta(logic.pictureBoxes[i].BackgroundImage, logic.id[i]));
-                    break;
+                }
+
+
+                logic.id = logic.id.OrderBy(x => rnd.Next()).ToArray();
+                for (int j = 0; j < logic.id.Length; j++)
+                {
+                    logic.karty.Add(new Karta(logic.pictureBoxes[i].BackgroundImage, logic.id[j]));
                 }
             }
-
             return logic.karty;
         }
         #endregion
 
         private void Hra()
         {
-            do
-            {
-                RozdejKarty();
-            }
-            while (znovu);
-        }
-
-        private void RozdejKarty()
-        {
             UkazPredniStranu();
             UkazZadniStranu();
         }
 
-        #region Kontrola otočení 1 páru karet - přiřazení obrázku, vyhodnocení rovnosti
+
+        #region Kontrola otočení 1 páru karet - přiřazení obrázku, vyhodnocení rovnosti, přepínání povolení kliknutí
         private void Kolo(int otoceno)
         {
             switch (otoceno)
@@ -160,12 +158,16 @@ namespace Pexeso
                 case 1:
                     PriradTempImage(otoceno);
                     prvniKarta = pictNumber;
+                    p1 = pictName;
                     tag1 = tag;
+                    ZakazKlik(p1);
                     break;
                 case 2:
                     PriradTempImage(otoceno);
                     druhaKarta = pictNumber;
+                    p2 = pictName;
                     tag2 = tag;
+                    ZakazKlik(p2);
                     Vyhodnot(tag1, tag2);
                     break;
             }
@@ -207,22 +209,56 @@ namespace Pexeso
             {
                 // uvnitř následující metody otočení karet zadní stranou nahoru
                 timer1.Start();
+                PovolKlik(p1);
+                PovolKlik(p2);
                 otoceno = 0;
             }
             else
-            {   // nalezen pár shodných karet
+            {   
+                // nalezen pár shodných karet
                 trefa++;
                 System.Diagnostics.Debug.WriteLine("Trefa: " + trefa.ToString());
+                ZakazKlik(p1);
+                ZakazKlik(p2);
                 otoceno = 0;
 
-                //TODO: všechny karty otočené
-
+                // konec hry nebo rozdat znovu
+                if (trefa == konec)
+                    Znovu();
                 //Skore
-
                 skore += prictiBody;
                 label2.Text = skore.ToString();
             }
+        
         }
+
+        private void ZakazKlik(string jmenoKarty)
+        {
+            foreach (var p in logic.pictureBoxes)
+            {
+                if (p.Name.Contains(jmenoKarty))
+                {
+                    System.Diagnostics.Debug.WriteLine("Karta zakázana");
+                    p.Enabled = false;
+                    break;
+                }
+            }
+        }
+
+        private void PovolKlik(string jmenoKarty)
+        {
+            foreach (var p in logic.pictureBoxes)
+            {
+                if (p.Name.Contains(jmenoKarty))
+                {
+                    System.Diagnostics.Debug.WriteLine("Karta zakázana");
+                    p.Enabled = true;
+                    break;
+                }
+            }
+        }
+            
+
         private void SchovejKartu(int prvniKarta, int druhaKarta)
         {
             for (int i = 0; i < logic.karty.Count; i++)
@@ -243,10 +279,23 @@ namespace Pexeso
                 }
             }
         }
+
+        private void Znovu()
+        {
+            DialogResult dialogResult = MessageBox.Show("Rozdat znovu", "Konec hry", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                Hra();
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+                MessageBox.Show("Konec hry\ntvoje skore: " + skore.ToString()); 
+            }
+        }
         #endregion
 
 
-
+    
         // klik na kartu
         private void KartaClick(object sender, EventArgs e)
         {
