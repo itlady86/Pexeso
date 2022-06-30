@@ -294,7 +294,6 @@ namespace Pexeso
         }
         #endregion
 
-
     
         // klik na kartu
         private void KartaClick(object sender, EventArgs e)
